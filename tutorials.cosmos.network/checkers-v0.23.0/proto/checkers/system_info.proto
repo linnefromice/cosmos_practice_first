@@ -1,0 +1,9 @@
+syntax = "proto3";
+package tutorials.cosmos.network.checkers.checkers;
+
+option go_package = "github.com/linnefromice/cosmos_practice_first/tutorials.cosmos.network/checkers/x/checkers/types";
+
+message SystemInfo {
+  uint64 nextId = 1; 
+  
+}
