@@ -275,40 +275,132 @@ func (m *MsgPlayMoveResponse) GetWinner() string {
 	return ""
 }
 
+type MsgRejectGame struct {
+	Creator   string `protobuf:"bytes,1,opt,name=creator,proto3" json:"creator,omitempty"`
+	GameIndex string `protobuf:"bytes,2,opt,name=gameIndex,proto3" json:"gameIndex,omitempty"`
+}
+
+func (m *MsgRejectGame) Reset()         { *m = MsgRejectGame{} }
+func (m *MsgRejectGame) String() string { return proto.CompactTextString(m) }
+func (*MsgRejectGame) ProtoMessage()    {}
+func (*MsgRejectGame) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b89f7ca8d0309536, []int{4}
+}
+func (m *MsgRejectGame) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgRejectGame) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgRejectGame.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgRejectGame) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgRejectGame.Merge(m, src)
+}
+func (m *MsgRejectGame) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgRejectGame) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgRejectGame.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgRejectGame proto.InternalMessageInfo
+
+func (m *MsgRejectGame) GetCreator() string {
+	if m != nil {
+		return m.Creator
+	}
+	return ""
+}
+
+func (m *MsgRejectGame) GetGameIndex() string {
+	if m != nil {
+		return m.GameIndex
+	}
+	return ""
+}
+
+type MsgRejectGameResponse struct {
+}
+
+func (m *MsgRejectGameResponse) Reset()         { *m = MsgRejectGameResponse{} }
+func (m *MsgRejectGameResponse) String() string { return proto.CompactTextString(m) }
+func (*MsgRejectGameResponse) ProtoMessage()    {}
+func (*MsgRejectGameResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_b89f7ca8d0309536, []int{5}
+}
+func (m *MsgRejectGameResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *MsgRejectGameResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_MsgRejectGameResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *MsgRejectGameResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_MsgRejectGameResponse.Merge(m, src)
+}
+func (m *MsgRejectGameResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *MsgRejectGameResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_MsgRejectGameResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_MsgRejectGameResponse proto.InternalMessageInfo
+
 func init() {
 	proto.RegisterType((*MsgCreateGame)(nil), "linnefromice.checkers.checkers.MsgCreateGame")
 	proto.RegisterType((*MsgCreateGameResponse)(nil), "linnefromice.checkers.checkers.MsgCreateGameResponse")
 	proto.RegisterType((*MsgPlayMove)(nil), "linnefromice.checkers.checkers.MsgPlayMove")
 	proto.RegisterType((*MsgPlayMoveResponse)(nil), "linnefromice.checkers.checkers.MsgPlayMoveResponse")
+	proto.RegisterType((*MsgRejectGame)(nil), "linnefromice.checkers.checkers.MsgRejectGame")
+	proto.RegisterType((*MsgRejectGameResponse)(nil), "linnefromice.checkers.checkers.MsgRejectGameResponse")
 }
 
 func init() { proto.RegisterFile("checkers/tx.proto", fileDescriptor_b89f7ca8d0309536) }
 
 var fileDescriptor_b89f7ca8d0309536 = []byte{
-	// 366 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x92, 0xbd, 0x4e, 0xe3, 0x40,
-	0x10, 0xc7, 0xe3, 0x7c, 0xdd, 0x65, 0x4e, 0x27, 0xdd, 0x99, 0x0f, 0x59, 0x11, 0xb2, 0x90, 0x2b,
-	0x24, 0x84, 0x23, 0x88, 0xf2, 0x02, 0x50, 0x20, 0x84, 0x2c, 0x81, 0xab, 0x98, 0xce, 0xd9, 0x0c,
-	0x8e, 0x15, 0xdb, 0x6b, 0xed, 0x6e, 0x20, 0x79, 0x0b, 0x1a, 0xde, 0x89, 0x32, 0x25, 0x25, 0x4a,
-	0x0a, 0x5e, 0x03, 0xed, 0x26, 0xfe, 0x08, 0x45, 0x44, 0xba, 0x99, 0xdf, 0x8c, 0xfe, 0xfb, 0x9f,
-	0x99, 0x85, 0xff, 0x64, 0x84, 0x64, 0x8c, 0x8c, 0x77, 0xc4, 0xd4, 0x4e, 0x19, 0x15, 0x54, 0x37,
-	0xa3, 0x30, 0x49, 0xf0, 0x91, 0xd1, 0x38, 0x24, 0x68, 0x67, 0xf5, 0x3c, 0xb0, 0xee, 0xe1, 0xaf,
-	0xc3, 0x83, 0x2b, 0x86, 0xbe, 0xc0, 0x6b, 0x3f, 0x46, 0xdd, 0x80, 0x5f, 0x44, 0x66, 0x94, 0x19,
-	0xda, 0xb1, 0x76, 0xd2, 0x72, 0xb3, 0x54, 0xdf, 0x87, 0xc6, 0x20, 0xf2, 0xc9, 0xd8, 0xa8, 0x2a,
-	0xbe, 0x4a, 0xf4, 0x7f, 0x50, 0x63, 0x38, 0x34, 0x6a, 0x8a, 0xc9, 0xd0, 0xea, 0xc1, 0xc1, 0x86,
-	0xa4, 0x8b, 0x3c, 0xa5, 0x09, 0x47, 0xfd, 0x08, 0x5a, 0x81, 0x1f, 0xe3, 0x4d, 0x32, 0xc4, 0xe9,
-	0x5a, 0xbc, 0x00, 0xd6, 0xab, 0x06, 0x7f, 0x1c, 0x1e, 0xdc, 0x45, 0xfe, 0xcc, 0xa1, 0x4f, 0xdb,
-	0x8c, 0x6c, 0xe8, 0x54, 0xbf, 0xe9, 0x48, 0x9b, 0x72, 0xdc, 0xbe, 0xb2, 0x54, 0x77, 0x57, 0x49,
-	0x46, 0x3d, 0xa3, 0x5e, 0x50, 0x4f, 0x9a, 0x17, 0xb4, 0x6f, 0x34, 0x14, 0x93, 0xe1, 0x8a, 0x78,
-	0x46, 0x33, 0x23, 0x9e, 0x15, 0xc2, 0x5e, 0xc9, 0x56, 0x79, 0x18, 0xe2, 0xa7, 0x62, 0xc2, 0x70,
-	0xd8, 0x57, 0x06, 0x1b, 0x6e, 0x01, 0xca, 0x55, 0x4f, 0x59, 0x2c, 0x55, 0x3d, 0xfd, 0x10, 0x9a,
-	0xcf, 0xf2, 0x2c, 0x6c, 0xbd, 0xb6, 0x75, 0x76, 0xf1, 0xa9, 0x41, 0xcd, 0xe1, 0x81, 0xce, 0x00,
-	0x4a, 0x17, 0x39, 0xb3, 0xb7, 0xdf, 0xd0, 0xde, 0xd8, 0x76, 0xbb, 0xb7, 0x53, 0x7b, 0x3e, 0x4f,
-	0x04, 0xbf, 0xf3, 0xd5, 0x9f, 0xfe, 0x40, 0x22, 0x6b, 0x6e, 0x77, 0x77, 0x68, 0xce, 0x5e, 0xbb,
-	0xbc, 0x7d, 0x5b, 0x98, 0xda, 0x7c, 0x61, 0x6a, 0x1f, 0x0b, 0x53, 0x7b, 0x59, 0x9a, 0x95, 0xf9,
-	0xd2, 0xac, 0xbc, 0x2f, 0xcd, 0xca, 0xc3, 0x79, 0x10, 0x8a, 0xd1, 0x64, 0x60, 0x13, 0x1a, 0x77,
-	0xca, 0xc2, 0x9d, 0xfc, 0x6f, 0x4f, 0x8b, 0x50, 0xcc, 0x52, 0xe4, 0x83, 0xa6, 0xfa, 0xea, 0xdd,
-	0xaf, 0x00, 0x00, 0x00, 0xff, 0xff, 0xff, 0xf5, 0xe4, 0x5b, 0xff, 0x02, 0x00, 0x00,
+	// 397 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x53, 0xcd, 0x4a, 0xf3, 0x50,
+	0x10, 0x6d, 0xfa, 0xf7, 0x7d, 0x1d, 0x11, 0x34, 0xfe, 0x85, 0x22, 0x41, 0xb2, 0x12, 0xc4, 0x14,
+	0x2d, 0x7d, 0x01, 0x5d, 0x14, 0x91, 0x80, 0x66, 0xd5, 0xb8, 0x4b, 0x6f, 0xc7, 0x34, 0x36, 0xc9,
+	0x0d, 0x37, 0xb7, 0xda, 0xbe, 0x85, 0x1b, 0xdf, 0xc9, 0x65, 0x97, 0x82, 0x1b, 0x69, 0x5f, 0x44,
+	0x72, 0xdb, 0xfc, 0x54, 0xa1, 0xb6, 0xbb, 0x99, 0x33, 0xc3, 0xc9, 0x99, 0x73, 0x72, 0x61, 0x97,
+	0xf4, 0x91, 0x0c, 0x90, 0x45, 0x0d, 0x3e, 0xd2, 0x43, 0x46, 0x39, 0x95, 0x55, 0xcf, 0x0d, 0x02,
+	0x7c, 0x64, 0xd4, 0x77, 0x09, 0xea, 0xc9, 0x3c, 0x2d, 0xb4, 0x7b, 0xd8, 0x36, 0x22, 0xe7, 0x9a,
+	0xa1, 0xcd, 0xb1, 0x6d, 0xfb, 0x28, 0x2b, 0xf0, 0x8f, 0xc4, 0x1d, 0x65, 0x8a, 0x74, 0x22, 0x9d,
+	0xd6, 0xcc, 0xa4, 0x95, 0xf7, 0xa1, 0xd2, 0xf5, 0x6c, 0x32, 0x50, 0x8a, 0x02, 0x9f, 0x37, 0xf2,
+	0x0e, 0x94, 0x18, 0xf6, 0x94, 0x92, 0xc0, 0xe2, 0x52, 0x6b, 0xc1, 0xc1, 0x12, 0xa5, 0x89, 0x51,
+	0x48, 0x83, 0x08, 0xe5, 0x63, 0xa8, 0x39, 0xb6, 0x8f, 0x37, 0x41, 0x0f, 0x47, 0x0b, 0xf2, 0x0c,
+	0xd0, 0xde, 0x24, 0xd8, 0x32, 0x22, 0xe7, 0xce, 0xb3, 0xc7, 0x06, 0x7d, 0x5e, 0x25, 0x64, 0x89,
+	0xa7, 0xf8, 0x83, 0x27, 0x96, 0x19, 0x9f, 0xdb, 0x11, 0x92, 0xca, 0xe6, 0xbc, 0x49, 0x50, 0x4b,
+	0x29, 0x67, 0xa8, 0x15, 0x8b, 0xe7, 0xb4, 0xa3, 0x54, 0x04, 0x16, 0x97, 0x73, 0xc4, 0x52, 0xaa,
+	0x09, 0x62, 0x69, 0x2e, 0xec, 0xe5, 0x64, 0xe5, 0x8f, 0x21, 0x76, 0xc8, 0x87, 0x0c, 0x7b, 0x1d,
+	0x21, 0xb0, 0x62, 0x66, 0x40, 0x7e, 0x6a, 0x09, 0x89, 0xb9, 0xa9, 0x25, 0x1f, 0x42, 0xf5, 0x25,
+	0x8e, 0x85, 0x2d, 0x6c, 0x5b, 0x74, 0x5a, 0x5b, 0x84, 0x61, 0xe2, 0x13, 0x12, 0xfe, 0x47, 0x18,
+	0x2b, 0x3d, 0xd0, 0x8e, 0x44, 0x04, 0x19, 0x51, 0xa2, 0xfa, 0xf2, 0xb3, 0x08, 0x25, 0x23, 0x72,
+	0x64, 0x06, 0x90, 0xcb, 0xfc, 0x5c, 0x5f, 0xfd, 0x97, 0xe8, 0x4b, 0x79, 0xd6, 0x5b, 0x1b, 0xad,
+	0xa7, 0x8e, 0x79, 0xf0, 0x3f, 0x0d, 0xf7, 0x6c, 0x0d, 0x8a, 0x64, 0xb9, 0xde, 0xdc, 0x60, 0x39,
+	0xfd, 0x1a, 0x03, 0xc8, 0x19, 0xb9, 0xce, 0x85, 0xd9, 0xfa, 0x5a, 0x17, 0xfe, 0x76, 0xf7, 0xea,
+	0xf6, 0x7d, 0xaa, 0x4a, 0x93, 0xa9, 0x2a, 0x7d, 0x4d, 0x55, 0xe9, 0x75, 0xa6, 0x16, 0x26, 0x33,
+	0xb5, 0xf0, 0x31, 0x53, 0x0b, 0x0f, 0x17, 0x8e, 0xcb, 0xfb, 0xc3, 0xae, 0x4e, 0xa8, 0xdf, 0xc8,
+	0x53, 0x37, 0xd2, 0x17, 0x3b, 0xca, 0x4a, 0x3e, 0x0e, 0x31, 0xea, 0x56, 0xc5, 0x03, 0x6e, 0x7e,
+	0x07, 0x00, 0x00, 0xff, 0xff, 0xd4, 0xbe, 0x4a, 0x84, 0xd5, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -325,6 +417,7 @@ const _ = grpc.SupportPackageIsVersion4
 type MsgClient interface {
 	CreateGame(ctx context.Context, in *MsgCreateGame, opts ...grpc.CallOption) (*MsgCreateGameResponse, error)
 	PlayMove(ctx context.Context, in *MsgPlayMove, opts ...grpc.CallOption) (*MsgPlayMoveResponse, error)
+	RejectGame(ctx context.Context, in *MsgRejectGame, opts ...grpc.CallOption) (*MsgRejectGameResponse, error)
 }
 
 type msgClient struct {
@@ -353,10 +446,20 @@ func (c *msgClient) PlayMove(ctx context.Context, in *MsgPlayMove, opts ...grpc.
 	return out, nil
 }
 
+func (c *msgClient) RejectGame(ctx context.Context, in *MsgRejectGame, opts ...grpc.CallOption) (*MsgRejectGameResponse, error) {
+	out := new(MsgRejectGameResponse)
+	err := c.cc.Invoke(ctx, "/linnefromice.checkers.checkers.Msg/RejectGame", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // MsgServer is the server API for Msg service.
 type MsgServer interface {
 	CreateGame(context.Context, *MsgCreateGame) (*MsgCreateGameResponse, error)
 	PlayMove(context.Context, *MsgPlayMove) (*MsgPlayMoveResponse, error)
+	RejectGame(context.Context, *MsgRejectGame) (*MsgRejectGameResponse, error)
 }
 
 // UnimplementedMsgServer can be embedded to have forward compatible implementations.
@@ -368,6 +471,9 @@ func (*UnimplementedMsgServer) CreateGame(ctx context.Context, req *MsgCreateGam
 }
 func (*UnimplementedMsgServer) PlayMove(ctx context.Context, req *MsgPlayMove) (*MsgPlayMoveResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method PlayMove not implemented")
+}
+func (*UnimplementedMsgServer) RejectGame(ctx context.Context, req *MsgRejectGame) (*MsgRejectGameResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RejectGame not implemented")
 }
 
 func RegisterMsgServer(s grpc1.Server, srv MsgServer) {
@@ -410,6 +516,24 @@ func _Msg_PlayMove_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_RejectGame_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgRejectGame)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).RejectGame(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/linnefromice.checkers.checkers.Msg/RejectGame",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).RejectGame(ctx, req.(*MsgRejectGame))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Msg_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "linnefromice.checkers.checkers.Msg",
 	HandlerType: (*MsgServer)(nil),
@@ -421,6 +545,10 @@ var _Msg_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "PlayMove",
 			Handler:    _Msg_PlayMove_Handler,
+		},
+		{
+			MethodName: "RejectGame",
+			Handler:    _Msg_RejectGame_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -598,6 +726,66 @@ func (m *MsgPlayMoveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *MsgRejectGame) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgRejectGame) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgRejectGame) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.GameIndex) > 0 {
+		i -= len(m.GameIndex)
+		copy(dAtA[i:], m.GameIndex)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.GameIndex)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Creator) > 0 {
+		i -= len(m.Creator)
+		copy(dAtA[i:], m.Creator)
+		i = encodeVarintTx(dAtA, i, uint64(len(m.Creator)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *MsgRejectGameResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *MsgRejectGameResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *MsgRejectGameResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintTx(dAtA []byte, offset int, v uint64) int {
 	offset -= sovTx(v)
 	base := offset
@@ -688,6 +876,32 @@ func (m *MsgPlayMoveResponse) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovTx(uint64(l))
 	}
+	return n
+}
+
+func (m *MsgRejectGame) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Creator)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	l = len(m.GameIndex)
+	if l > 0 {
+		n += 1 + l + sovTx(uint64(l))
+	}
+	return n
+}
+
+func (m *MsgRejectGameResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
 	return n
 }
 
@@ -1214,6 +1428,170 @@ func (m *MsgPlayMoveResponse) Unmarshal(dAtA []byte) error {
 			}
 			m.Winner = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgRejectGame) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgRejectGame: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgRejectGame: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Creator", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Creator = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field GameIndex", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTx
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthTx
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthTx
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.GameIndex = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTx(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthTx
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *MsgRejectGameResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTx
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: MsgRejectGameResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: MsgRejectGameResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
 		default:
 			iNdEx = preIndex
 			skippy, err := skipTx(dAtA[iNdEx:])

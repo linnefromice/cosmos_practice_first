@@ -52066,6 +52066,8 @@ definitions:
         format: int32
       winner:
         type: string
+  linnefromice.checkers.checkers.MsgRejectGameResponse:
+    type: object
   linnefromice.checkers.checkers.Params:
     type: object
     description: Params defines the parameters for the module.
