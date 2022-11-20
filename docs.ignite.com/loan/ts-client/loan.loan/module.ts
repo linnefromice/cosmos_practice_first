@@ -9,9 +9,10 @@ import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
 import { MsgRequestLoan } from "./types/loan/loan/tx";
 import { MsgApproveLoan } from "./types/loan/loan/tx";
+import { MsgRepayLoan } from "./types/loan/loan/tx";
 
 
-export { MsgRequestLoan, MsgApproveLoan };
+export { MsgRequestLoan, MsgApproveLoan, MsgRepayLoan };
 
 type sendMsgRequestLoanParams = {
   value: MsgRequestLoan,
@@ -25,6 +26,12 @@ type sendMsgApproveLoanParams = {
   memo?: string
 };
 
+type sendMsgRepayLoanParams = {
+  value: MsgRepayLoan,
+  fee?: StdFee,
+  memo?: string
+};
+
 
 type msgRequestLoanParams = {
   value: MsgRequestLoan,
@@ -32,6 +39,10 @@ type msgRequestLoanParams = {
 
 type msgApproveLoanParams = {
   value: MsgApproveLoan,
+};
+
+type msgRepayLoanParams = {
+  value: MsgRepayLoan,
 };
 
 
@@ -80,6 +91,20 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 			}
 		},
 		
+		async sendMsgRepayLoan({ value, fee, memo }: sendMsgRepayLoanParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgRepayLoan: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgRepayLoan({ value: MsgRepayLoan.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgRepayLoan: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
 		
 		msgRequestLoan({ value }: msgRequestLoanParams): EncodeObject {
 			try {
@@ -94,6 +119,14 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 				return { typeUrl: "/loan.loan.MsgApproveLoan", value: MsgApproveLoan.fromPartial( value ) }  
 			} catch (e: any) {
 				throw new Error('TxClient:MsgApproveLoan: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgRepayLoan({ value }: msgRepayLoanParams): EncodeObject {
+			try {
+				return { typeUrl: "/loan.loan.MsgRepayLoan", value: MsgRepayLoan.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgRepayLoan: Could not create message: ' + e.message)
 			}
 		},
 		
