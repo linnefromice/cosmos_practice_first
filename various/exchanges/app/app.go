@@ -107,6 +107,7 @@ import (
 	exchangesmodule "exchanges/x/exchanges"
 	exchangesmodulekeeper "exchanges/x/exchanges/keeper"
 	exchangesmoduletypes "exchanges/x/exchanges/types"
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	appparams "exchanges/app/params"
@@ -507,6 +508,8 @@ func New(
 		keys[exchangesmoduletypes.StoreKey],
 		keys[exchangesmoduletypes.MemStoreKey],
 		app.GetSubspace(exchangesmoduletypes.ModuleName),
+		app.AccountKeeper,
+		app.BankKeeper,
 	)
 	exchangesModule := exchangesmodule.NewAppModule(appCodec, app.ExchangesKeeper, app.AccountKeeper, app.BankKeeper)
 
