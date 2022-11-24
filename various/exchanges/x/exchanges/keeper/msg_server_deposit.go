@@ -7,13 +7,20 @@ import (
 	"exchanges/x/exchanges/types"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
+	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
 
 func (k msgServer) Deposit(goCtx context.Context, msg *types.MsgDeposit) (*types.MsgDepositResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
 	sender, _ := sdk.AccAddressFromBech32(msg.Creator)
 
-	err := k.bankKeeper.SendCoinsFromAccountToModule(ctx, sender, types.ModuleName, sdk.NewCoins(msg.Amount))
+	pool, found := k.GetPool(ctx, msg.PoolId)
+	if !found {
+		return &types.MsgDepositResponse{}, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.PoolId))
+	}
+
+	poolAddr, _ := sdk.AccAddressFromBech32(pool.Address)
+	err := k.bankKeeper.SendCoins(ctx, sender, poolAddr, sdk.NewCoins(msg.Amount))
 	if err != nil {
 		return &types.MsgDepositResponse{}, err
 	}
@@ -28,6 +35,10 @@ func (k msgServer) Deposit(goCtx context.Context, msg *types.MsgDeposit) (*types
 	if err != nil {
 		return &types.MsgDepositResponse{}, err
 	}
+
+	// update state
+	pool.NormalDeposited += msg.Amount.Amount.Uint64()
+	k.SetPool(ctx, pool)
 
 	return &types.MsgDepositResponse{}, nil
 }
