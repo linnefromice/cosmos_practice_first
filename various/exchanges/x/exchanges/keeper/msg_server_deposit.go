@@ -18,6 +18,9 @@ func (k msgServer) Deposit(goCtx context.Context, msg *types.MsgDeposit) (*types
 	if !found {
 		return &types.MsgDepositResponse{}, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.PoolId))
 	}
+	if msg.Amount.Denom != pool.Denom {
+		return &types.MsgDepositResponse{}, sdkerrors.Wrapf(types.ErrIncorrectDenom, "input: %s, supported: %s", msg.Amount.Denom, pool.Denom)
+	}
 
 	poolAddr, _ := sdk.AccAddressFromBech32(pool.Address)
 	err := k.bankKeeper.SendCoins(ctx, sender, poolAddr, sdk.NewCoins(msg.Amount))

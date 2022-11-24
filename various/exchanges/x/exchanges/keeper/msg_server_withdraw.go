@@ -18,6 +18,9 @@ func (k msgServer) Withdraw(goCtx context.Context, msg *types.MsgWithdraw) (*typ
 	if !found {
 		return &types.MsgWithdrawResponse{}, sdkerrors.Wrap(sdkerrors.ErrKeyNotFound, fmt.Sprintf("key %d doesn't exist", msg.PoolId))
 	}
+	if msg.Amount.Denom != pool.Denom {
+		return &types.MsgWithdrawResponse{}, sdkerrors.Wrapf(types.ErrIncorrectDenom, "input: %s, supported: %s", msg.Amount.Denom, pool.Denom)
+	}
 
 	lpDenom := fmt.Sprintf("share%s", msg.Amount.Denom)
 	lpCoin := sdk.NewCoin(lpDenom, msg.Amount.Amount)
