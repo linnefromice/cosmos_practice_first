@@ -69208,6 +69208,8 @@ definitions:
     description: Period defines a length of time and amount of coins that will vest.
   exchanges.exchanges.MsgDepositResponse:
     type: object
+  exchanges.exchanges.MsgWithdrawResponse:
+    type: object
   exchanges.exchanges.Params:
     type: object
     description: Params defines the parameters for the module.

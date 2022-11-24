@@ -10,6 +10,7 @@ option go_package = "exchanges/x/exchanges/types";
 // Msg defines the Msg service.
 service Msg {
       rpc Deposit(MsgDeposit) returns (MsgDepositResponse);
+  rpc Withdraw(MsgWithdraw) returns (MsgWithdrawResponse);
 // this line is used by starport scaffolding # proto/tx/rpc
 }
 
@@ -20,6 +21,15 @@ message MsgDeposit {
 }
 
 message MsgDepositResponse {
+}
+
+message MsgWithdraw {
+  string creator = 1;
+  uint64 poolId = 2;
+  cosmos.base.v1beta1.Coin amount = 3 [(gogoproto.nullable) = false];
+}
+
+message MsgWithdrawResponse {
 }
 
 // this line is used by starport scaffolding # proto/tx/message
