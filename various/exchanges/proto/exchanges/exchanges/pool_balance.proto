@@ -1,0 +1,12 @@
+syntax = "proto3";
+package exchanges.exchanges;
+
+option go_package = "exchanges/x/exchanges/types";
+import "gogoproto/gogo.proto"; 
+import "cosmos/base/v1beta1/coin.proto"; 
+
+message PoolBalance {
+  
+  uint64 poolId = 1; 
+  cosmos.base.v1beta1.Coin balance = 2 [(gogoproto.nullable) = false]; 
+}
