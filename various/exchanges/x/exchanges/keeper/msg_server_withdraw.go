@@ -40,5 +40,12 @@ func (k msgServer) Withdraw(goCtx context.Context, msg *types.MsgWithdraw) (*typ
 	pool.NormalDeposited -= msg.Amount.Amount.Uint64()
 	k.SetPool(ctx, pool)
 
+	ctx.EventManager().EmitEvent(
+		sdk.NewEvent(types.PoolDepositedEventType,
+			sdk.NewAttribute(types.PoolEventId, fmt.Sprint(pool.Id)),
+			sdk.NewAttribute(types.PoolEventAmount, fmt.Sprint(msg.Amount.Amount)),
+			sdk.NewAttribute(types.PoolEventDenom, fmt.Sprint(msg.Amount.Denom))),
+	)
+
 	return &types.MsgWithdrawResponse{}, nil
 }
