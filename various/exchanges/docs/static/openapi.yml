@@ -69397,6 +69397,8 @@ definitions:
             NOTE: The amount field is an Int which implements the custom method
             signatures required by gogoproto.
     description: Period defines a length of time and amount of coins that will vest.
+  exchanges.exchanges.MsgCreatePoolResponse:
+    type: object
   exchanges.exchanges.MsgDepositResponse:
     type: object
   exchanges.exchanges.MsgWithdrawResponse:
