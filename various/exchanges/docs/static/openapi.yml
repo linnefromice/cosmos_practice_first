@@ -33813,18 +33813,24 @@ paths:
                 items:
                   type: object
                   properties:
-                    denom:
+                    poolId:
                       type: string
-                    amount:
-                      type: string
-                  description: >-
-                    Coin defines a token with a denomination and an amount.
+                      format: uint64
+                    balance:
+                      type: object
+                      properties:
+                        denom:
+                          type: string
+                        amount:
+                          type: string
+                      description: >-
+                        Coin defines a token with a denomination and an amount.
 
 
-                    NOTE: The amount field is an Int which implements the custom
-                    method
+                        NOTE: The amount field is an Int which implements the
+                        custom method
 
-                    signatures required by gogoproto.
+                        signatures required by gogoproto.
         default:
           description: An unexpected error response.
           schema:
@@ -69478,6 +69484,24 @@ definitions:
       borrowed:
         type: string
         format: uint64
+  exchanges.exchanges.PoolBalance:
+    type: object
+    properties:
+      poolId:
+        type: string
+        format: uint64
+      balance:
+        type: object
+        properties:
+          denom:
+            type: string
+          amount:
+            type: string
+        description: |-
+          Coin defines a token with a denomination and an amount.
+
+          NOTE: The amount field is an Int which implements the custom method
+          signatures required by gogoproto.
   exchanges.exchanges.QueryAllPoolResponse:
     type: object
     properties:
@@ -69569,15 +69593,24 @@ definitions:
         items:
           type: object
           properties:
-            denom:
+            poolId:
               type: string
-            amount:
-              type: string
-          description: |-
-            Coin defines a token with a denomination and an amount.
+              format: uint64
+            balance:
+              type: object
+              properties:
+                denom:
+                  type: string
+                amount:
+                  type: string
+              description: >-
+                Coin defines a token with a denomination and an amount.
 
-            NOTE: The amount field is an Int which implements the custom method
-            signatures required by gogoproto.
+
+                NOTE: The amount field is an Int which implements the custom
+                method
+
+                signatures required by gogoproto.
   ibc.applications.interchain_accounts.controller.v1.Params:
     type: object
     properties:

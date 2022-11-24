@@ -5,8 +5,8 @@ import "google/api/annotations.proto";
 import "cosmos/base/query/v1beta1/pagination.proto";
 import "exchanges/exchanges/params.proto";
 import "exchanges/exchanges/pool.proto";
+import "exchanges/exchanges/pool_balance.proto";
 // this line is used by starport scaffolding # 1
-import "cosmos/base/v1beta1/coin.proto";
 import "gogoproto/gogo.proto";
 
 option go_package = "exchanges/x/exchanges/types";
@@ -65,7 +65,7 @@ message QueryPoolBalancesRequest {
 }
 
 message QueryPoolBalancesResponse {
-  repeated cosmos.base.v1beta1.Coin balances = 1 [(gogoproto.nullable) = false];
+  repeated PoolBalance balances = 1 [(gogoproto.nullable) = false];
 }
 
 // this line is used by starport scaffolding # 3
