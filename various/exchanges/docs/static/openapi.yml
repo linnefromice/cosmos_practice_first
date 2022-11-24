@@ -33623,6 +33623,8 @@ paths:
                       format: uint64
                     address:
                       type: string
+                    denom:
+                      type: string
                     isActive:
                       type: boolean
                     normalDeposited:
@@ -33756,6 +33758,8 @@ paths:
                     type: string
                     format: uint64
                   address:
+                    type: string
+                  denom:
                     type: string
                   isActive:
                     type: boolean
@@ -69414,6 +69418,8 @@ definitions:
         format: uint64
       address:
         type: string
+      denom:
+        type: string
       isActive:
         type: boolean
       normalDeposited:
@@ -69437,6 +69443,8 @@ definitions:
               type: string
               format: uint64
             address:
+              type: string
+            denom:
               type: string
             isActive:
               type: boolean
@@ -69485,6 +69493,8 @@ definitions:
             type: string
             format: uint64
           address:
+            type: string
+          denom:
             type: string
           isActive:
             type: boolean

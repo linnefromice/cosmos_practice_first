@@ -31,6 +31,7 @@ func (k msgServer) CreatePool(goCtx context.Context, msg *types.MsgCreatePool) (
 
 	pool := types.Pool{
 		Address:         accI.GetAddress().String(),
+		Denom:           msg.Denom,
 		IsActive:        true,
 		NormalDeposited: 0,
 		ConlyDeposited:  0,
