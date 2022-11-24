@@ -13,6 +13,7 @@ type AccountKeeper interface {
 	GetModuleAddressAndPermissions(moduleName string) (sdk.AccAddress, []string)
 	GetModuleAccountAndPermissions(ctx sdk.Context, moduleName string) (types.ModuleAccountI, []string)
 	SetModuleAccount(ctx sdk.Context, macc types.ModuleAccountI)
+	SetAccount(sdk.Context, types.AccountI)
 	HasAccount(ctx sdk.Context, addr sdk.AccAddress) bool
 }
 
