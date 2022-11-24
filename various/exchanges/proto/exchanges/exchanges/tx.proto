@@ -39,6 +39,7 @@ message MsgCreatePool {
 }
 
 message MsgCreatePoolResponse {
+  uint64 poolId = 1;
 }
 
 // this line is used by starport scaffolding # proto/tx/message

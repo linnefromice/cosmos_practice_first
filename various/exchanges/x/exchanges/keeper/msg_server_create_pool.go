@@ -45,5 +45,7 @@ func (k msgServer) CreatePool(goCtx context.Context, msg *types.MsgCreatePool) (
 			sdk.NewAttribute(types.PoolEventDenom, fmt.Sprint(msg.Denom))),
 	)
 
-	return &types.MsgCreatePoolResponse{}, nil
+	return &types.MsgCreatePoolResponse{
+		PoolId: pool.Id,
+	}, nil
 }
