@@ -69456,6 +69456,10 @@ definitions:
     description: Period defines a length of time and amount of coins that will vest.
   exchanges.exchanges.MsgCreatePoolResponse:
     type: object
+    properties:
+      poolId:
+        type: string
+        format: uint64
   exchanges.exchanges.MsgDepositResponse:
     type: object
   exchanges.exchanges.MsgWithdrawResponse:

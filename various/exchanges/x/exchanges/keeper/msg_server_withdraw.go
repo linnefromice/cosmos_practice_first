@@ -22,8 +22,7 @@ func (k msgServer) Withdraw(goCtx context.Context, msg *types.MsgWithdraw) (*typ
 		return &types.MsgWithdrawResponse{}, sdkerrors.Wrapf(types.ErrIncorrectDenom, "input: %s, supported: %s", msg.Amount.Denom, pool.Denom)
 	}
 
-	lpDenom := fmt.Sprintf("share%s", msg.Amount.Denom)
-	lpCoin := sdk.NewCoin(lpDenom, msg.Amount.Amount)
+	lpCoin := sdk.NewCoin(pool.ShareCoinDenom(), msg.Amount.Amount)
 	err := k.bankKeeper.SendCoinsFromAccountToModule(ctx, sender, types.ModuleName, sdk.NewCoins(lpCoin))
 	if err != nil {
 		return &types.MsgWithdrawResponse{}, err

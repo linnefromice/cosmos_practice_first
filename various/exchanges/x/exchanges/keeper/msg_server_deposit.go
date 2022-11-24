@@ -28,8 +28,7 @@ func (k msgServer) Deposit(goCtx context.Context, msg *types.MsgDeposit) (*types
 		return &types.MsgDepositResponse{}, err
 	}
 
-	lpDenom := fmt.Sprintf("share%s", msg.Amount.Denom)
-	lpCoin := sdk.NewCoin(lpDenom, msg.Amount.Amount)
+	lpCoin := sdk.NewCoin(pool.ShareCoinDenom(), msg.Amount.Amount)
 	err = k.bankKeeper.MintCoins(ctx, types.ModuleName, sdk.NewCoins(lpCoin))
 	if err != nil {
 		return &types.MsgDepositResponse{}, err
