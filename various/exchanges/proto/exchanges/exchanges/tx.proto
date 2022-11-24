@@ -1,0 +1,45 @@
+syntax = "proto3";
+package exchanges.exchanges;
+
+// this line is used by starport scaffolding # proto/tx/import
+import "cosmos/base/v1beta1/coin.proto";
+import "gogoproto/gogo.proto";
+
+option go_package = "exchanges/x/exchanges/types";
+
+// Msg defines the Msg service.
+service Msg {
+      rpc Deposit(MsgDeposit) returns (MsgDepositResponse);
+  rpc Withdraw(MsgWithdraw) returns (MsgWithdrawResponse);
+  rpc CreatePool(MsgCreatePool) returns (MsgCreatePoolResponse);
+// this line is used by starport scaffolding # proto/tx/rpc
+}
+
+message MsgDeposit {
+  string creator = 1;
+  uint64 poolId = 2;
+  cosmos.base.v1beta1.Coin amount = 3 [(gogoproto.nullable) = false];
+}
+
+message MsgDepositResponse {
+}
+
+message MsgWithdraw {
+  string creator = 1;
+  uint64 poolId = 2;
+  cosmos.base.v1beta1.Coin amount = 3 [(gogoproto.nullable) = false];
+}
+
+message MsgWithdrawResponse {
+}
+
+message MsgCreatePool {
+  string creator = 1;
+  string denom = 2;
+}
+
+message MsgCreatePoolResponse {
+  uint64 poolId = 1;
+}
+
+// this line is used by starport scaffolding # proto/tx/message

@@ -1,0 +1,71 @@
+syntax = "proto3";
+package exchanges.exchanges;
+
+import "google/api/annotations.proto";
+import "cosmos/base/query/v1beta1/pagination.proto";
+import "exchanges/exchanges/params.proto";
+import "exchanges/exchanges/pool.proto";
+import "exchanges/exchanges/pool_balance.proto";
+// this line is used by starport scaffolding # 1
+import "gogoproto/gogo.proto";
+
+option go_package = "exchanges/x/exchanges/types";
+
+// Query defines the gRPC querier service.
+service Query {
+  // Parameters queries the parameters of the module.
+  rpc Params(QueryParamsRequest) returns (QueryParamsResponse) {
+    option (google.api.http).get = "/exchanges/exchanges/params";
+  }
+  // Queries a Pool by id.
+	rpc Pool(QueryGetPoolRequest) returns (QueryGetPoolResponse) {
+		option (google.api.http).get = "/exchanges/exchanges/pool/{id}";
+	}
+
+	// Queries a list of Pool items.
+	rpc PoolAll(QueryAllPoolRequest) returns (QueryAllPoolResponse) {
+		option (google.api.http).get = "/exchanges/exchanges/pool";
+	}
+
+// Queries a list of PoolBalances items.
+	rpc PoolBalances(QueryPoolBalancesRequest) returns (QueryPoolBalancesResponse) {
+		option (google.api.http).get = "/exchanges/exchanges/pool_balances";
+	}
+
+// this line is used by starport scaffolding # 2
+}
+
+// QueryParamsRequest is request type for the Query/Params RPC method.
+message QueryParamsRequest {}
+
+// QueryParamsResponse is response type for the Query/Params RPC method.
+message QueryParamsResponse {
+  // params holds all the parameters of this module.
+  Params params = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryGetPoolRequest {
+	uint64 id = 1;
+}
+
+message QueryGetPoolResponse {
+	Pool Pool = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllPoolRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllPoolResponse {
+	repeated Pool Pool = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryPoolBalancesRequest {
+}
+
+message QueryPoolBalancesResponse {
+  repeated PoolBalance balances = 1 [(gogoproto.nullable) = false];
+}
+
+// this line is used by starport scaffolding # 3
