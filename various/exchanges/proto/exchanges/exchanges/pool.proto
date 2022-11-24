@@ -1,0 +1,14 @@
+syntax = "proto3";
+package exchanges.exchanges;
+
+option go_package = "exchanges/x/exchanges/types";
+
+message Pool {
+  uint64 id = 1;
+  string address = 2; 
+  bool isActive = 3; 
+  uint64 normalDeposited = 4; 
+  uint64 conlyDeposited = 5; 
+  uint64 borrowed = 6; 
+  
+}

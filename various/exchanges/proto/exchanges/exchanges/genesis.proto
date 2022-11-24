@@ -3,6 +3,7 @@ package exchanges.exchanges;
 
 import "gogoproto/gogo.proto";
 import "exchanges/exchanges/params.proto";
+import "exchanges/exchanges/pool.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 
 option go_package = "exchanges/x/exchanges/types";
@@ -10,5 +11,7 @@ option go_package = "exchanges/x/exchanges/types";
 // GenesisState defines the exchanges module's genesis state.
 message GenesisState {
   Params params = 1 [(gogoproto.nullable) = false];
+  repeated Pool poolList = 2 [(gogoproto.nullable) = false];
+  uint64 poolCount = 3;
   // this line is used by starport scaffolding # genesis/proto/state
 }
