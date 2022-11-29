@@ -35,7 +35,9 @@ message MsgWithdrawResponse {
 
 message MsgCreatePool {
   string creator = 1;
-  string denom = 2;
+  string denomName = 2;
+  string denomSymbol = 3;
+  string denomDecimal = 4;
 }
 
 message MsgCreatePoolResponse {

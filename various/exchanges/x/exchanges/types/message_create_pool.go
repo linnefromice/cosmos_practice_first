@@ -9,10 +9,12 @@ const TypeMsgCreatePool = "create_pool"
 
 var _ sdk.Msg = &MsgCreatePool{}
 
-func NewMsgCreatePool(creator string, denom string) *MsgCreatePool {
+func NewMsgCreatePool(creator string, denomName string, denomSymbol string, denomDecimal string) *MsgCreatePool {
 	return &MsgCreatePool{
-		Creator: creator,
-		Denom:   denom,
+		Creator:      creator,
+		DenomName:    denomName,
+		DenomSymbol:  denomSymbol,
+		DenomDecimal: denomDecimal,
 	}
 }
 
